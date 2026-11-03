@@ -2,6 +2,13 @@
 
 **Version V2 · React + TypeScript + FastAPI · Recherche documentaire hybride · Citations PDF vérifiables**
 
+## Aperçu de l'application
+
+![ClaimLens AI V2 — Analyse d'un sinistre et avis contractuel indicatif](docs/screenshots/analyse-sinistre.png)
+
+*Interface React de démonstration : analyse d'un sinistre sur une police fictive, avis indicatif et informations contractuelles à vérifier.*
+
+
 ClaimLens AI est un démonstrateur d'assistance à l'analyse de contrats d'assurance **entièrement synthétiques**. À partir d'un numéro de police et d'une déclaration de sinistre en français, l'application rassemble les informations du contrat, recherche les clauses pertinentes et produit, pour certains scénarios documentés, un **avis contractuel indicatif et motivé**. L'utilisateur peut consulter les références des conditions générales et particulières ainsi que les extraits surlignés sur leurs pages PDF d'origine.
 
 > **Important — périmètre de la démonstration.** Les trois polices, les six PDF, les garanties et les situations contractuelles sont fictifs. Les règles d'interprétation sont **rédigées manuellement à partir de ce corpus** ; elles ne sont pas extraites automatiquement de contrats arbitraires. Un avis « potentiellement couvert » ou « non couvert selon les clauses » n'est **ni une décision juridique, ni une décision d'indemnisation**. Le prototype ne doit pas être utilisé avec de véritables dossiers d'assurés et ne remplace pas une expertise humaine.
@@ -79,6 +86,12 @@ Il vérifie notamment les références de clauses, l'édition documentaire et la
 
 **Limite connue :** la visualisation surlignée a été conçue et testée pour les pages non pivotées. Elle n'est pas un moteur de lecture universel de tous les PDF.
 
+#### Visualisation d'une preuve dans le PDF original
+
+![ClaimLens AI V2 — Passage contractuel surligné dans le PDF source](docs/screenshots/pdf-surligne.png)
+
+*Consultation d'une clause contractuelle dans le PDF synthétique original, avec localisation et surlignage du passage justificatif.*
+
 ### 2.5 Interface utilisateur
 
 La V2 utilise **React 19, TypeScript et Vite 6**, avec une interface de travail comportant : choix de police, description libre (jusqu'à 1 000 caractères), exemples de scénarios, réglage du nombre de preuves, indicateur de disponibilité de l'API, avis explicatif, informations manquantes, citations et bibliothèque de preuves.
@@ -143,6 +156,12 @@ L'API doit rejeter la police inconnue (réponse `404` sur les routes d'analyse) 
 Le nombre de preuves affichées n'est **pas** un indicateur de couverture. Une preuve retrouvée peut être une exclusion à écarter si elle ne concerne pas la cause du sinistre.
 
 ---
+
+### Bibliothèque de preuves documentaires
+
+![ClaimLens AI V2 — Bibliothèque de preuves contractuelles](docs/screenshots/preuves-documentaires.png)
+
+*Résultats de la recherche hybride : passages pertinents, références aux documents contractuels et accès aux pages PDF d'origine.*
 
 ## 4. Architecture technique
 
