@@ -90,7 +90,22 @@ Une preuve affichée doit pouvoir être rattachée à un document autorisé et v
 
 Les tests Python se trouvent dans `tests/` ; ils couvrent notamment les schémas, l'import, les contraintes SQL, la recherche, la sécurité d'accès aux PDF, les prévisualisations et le moteur d'avis. Les cas de recherche sont dans `data/evaluation/`.
 
-Dernière validation **communiquée** le 2 novembre 2026 : **206 tests réussis, 1 ignoré, 12 avertissements et 0 échec** (`206 passed, 1 skipped, 12 warnings in 116.69s`). La compilation TypeScript/Vite a également été rapportée comme réussie. Ces résultats ne représentent pas une nouvelle exécution au moment de la rédaction de ce document.
+Une première validation complète a été effectuée le **2 novembre 2026** : 206 tests réussis, 1 ignoré, 12 avertissements et aucun échec.
+
+Le **3 novembre 2026**, une installation indépendante a été reconstruite à partir du commit Git `5cfbb85`, dans un nouveau dossier créé avec `git clone`.
+
+Cette vérification a confirmé :
+
+- L'installation des dépendances Python avec `pip check` sans incompatibilité détectée.
+- L'indexation des six PDF synthétiques.
+- L'initialisation SQLite avec trois polices, six documents et douze garanties.
+- L'exécution des tests Python : **206 réussis, 1 ignoré, 12 avertissements et 0 échec**, en 117,38 secondes.
+- L'installation des dépendances React avec `npm ci` et aucune vulnérabilité signalée par l'audit npm.
+- La compilation TypeScript/Vite : 1 579 modules transformés.
+- Le démarrage de FastAPI et l'affichage de l'interface React compilée.
+- La vérification manuelle d'un scénario d'analyse avec avis indicatif, dix preuves documentaires et visualisation d'un passage surligné dans le PDF original.
+
+Ces résultats confirment la reproductibilité du prototype sur l'environnement Windows testé. Ils ne constituent ni une certification de sécurité ni une validation métier sur des contrats réels.
 
 Commandes principales depuis la racine sous Windows :
 
@@ -98,7 +113,7 @@ Commandes principales depuis la racine sous Windows :
 .\.venv\Scripts\python.exe -m backend.ingestion.indexer
 .\.venv\Scripts\python.exe -m backend.database.bootstrap
 .\.venv\Scripts\python.exe -m pytest -q
-npm --prefix .\frontend-web install
+npm --prefix .\frontend-web ci
 npm --prefix .\frontend-web run build
 .\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
@@ -115,4 +130,22 @@ npm --prefix .\frontend-web run build
 
 ## 12. Statut documentaire
 
-Ce document décrit l'architecture **V2 telle que rapportée dans le dernier README du projet**. Les chemins, paramètres et résultats devront être comparés au dépôt Git final avant publication. Il ne constitue pas un audit indépendant du code ni une certification de sécurité.
+Ce document décrit l'architecture technique de **ClaimLens AI V2**, telle qu'implémentée et documentée dans le dépôt Git.
+
+Le **3 novembre 2026**, une vérification de reproductibilité a été réalisée à partir du commit `5cfbb85`, dans une copie indépendante du projet.
+
+Les opérations suivantes ont été validées :
+
+- Installation des dépendances Python et React.
+- Reconstruction des six exports documentaires.
+- Initialisation de la base SQLite.
+- Exécution des 206 tests Python réussis, avec un test ignoré et aucun échec.
+- Compilation de l'interface React avec TypeScript et Vite.
+- Démarrage de FastAPI et affichage de l'interface React.
+- Analyse manuelle d'un scénario de sinistre avec avis indicatif, preuves documentaires et visualisation PDF.
+
+Ces vérifications confirment le fonctionnement du prototype dans l'environnement local testé.
+
+**Limites de validation :** les vérifications réalisées ne constituent pas un audit de sécurité indépendant, une certification de conformité, une évaluation juridique des décisions ou une validation sur des contrats d'assurance réels.
+
+Le projet reste un démonstrateur technique local utilisant exclusivement des données synthétiques. La publication de son code sur GitHub ne correspond pas à un déploiement public de l'application.

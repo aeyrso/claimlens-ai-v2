@@ -63,9 +63,11 @@ La suite `tests/test_decision.py` a obtenu **17 tests réussis**, y compris des 
 
 Pour aller plus loin, il faudrait annoter indépendamment des scénarios positifs, négatifs, ambigus et contradictoires, puis mesurer les erreurs d'avis par type de garantie et circonstance.
 
-## 7. Résultat de la suite complète V2
+## 7. Résultats de validation de la V2
 
-**Validation communiquée : 2 novembre 2026 — Windows, Python 3.12.**
+### 7.1 Première validation — 2 novembre 2026
+
+Une première exécution complète des tests avait donné les résultats suivants :
 
 | Indicateur | Résultat |
 |---|---:|
@@ -80,9 +82,40 @@ Sortie rapportée :
 206 passed, 1 skipped, 12 warnings in 116.69s
 ```
 
-Le test ignoré porte sur un cas de lien symbolique soumis aux permissions Windows. Les avertissements sont essentiellement associés à des dépréciations de dépendances (dont Starlette/httpx, Docling, Pydantic et traitements OCR) et restent à surveiller. Le frontend React/TypeScript a été compilé avec Vite sans erreur, et plusieurs parcours React/FastAPI ont été vérifiés manuellement sur le poste local.
+### 7.2 Installation indépendante — 3 novembre 2026
 
-Ces résultats sont **rapportés à partir du README V2** ; la présente note ne prétend pas avoir exécuté de nouveaux tests.
+Une nouvelle validation a été effectuée à partir du commit Git `5cfbb85`, dans une copie propre créée avec `git clone`.
+
+**Environnement :** Windows, Python 3.12.10 et environnement virtuel indépendant.
+
+Les opérations suivantes ont réussi :
+
+- Installation des dépendances Python et vérification `pip check` : aucune incompatibilité détectée.
+- Indexation des six contrats PDF synthétiques : six exports générés.
+- Initialisation SQLite : trois polices, six documents et douze garanties.
+- Exécution de la suite complète Python.
+- Installation du frontend avec `npm ci` : 70 packages installés et aucune vulnérabilité signalée par npm.
+- Compilation TypeScript et Vite : réussie, avec 1 579 modules transformés.
+- Démarrage de FastAPI et affichage de l'interface React compilée.
+- Vérification manuelle d'un scénario d'analyse de sinistre avec avis indicatif, dix preuves documentaires et aperçu PDF surligné.
+
+**Résultat de la nouvelle exécution Python :**
+
+```text
+206 passed, 1 skipped, 12 warnings in 117.38s
+```
+
+Les 206 tests ont réussi, aucun n'a échoué et un test a été ignoré.
+
+Le test ignoré concerne un scénario de lien symbolique soumis aux permissions Windows. Les avertissements sont principalement liés à des fonctionnalités dépréciées dans certaines dépendances, notamment Starlette/httpx, Docling, Pydantic et les composants OCR.
+
+### 7.3 Interprétation
+
+Cette seconde validation confirme que ClaimLens AI V2 peut être reconstruit, testé et exécuté sur l'environnement Windows utilisé, à partir des sources enregistrées dans Git.
+
+Elle ne démontre pas une reproductibilité universelle sur tous les systèmes d'exploitation, ni une aptitude à la production.
+
+Les tests automatisés vérifient des comportements définis, mais ne constituent pas une validation indépendante de la qualité juridique des avis, de la pertinence documentaire sur des contrats réels ou de la sécurité d'un service exposé sur Internet.
 
 ## 8. Commandes de reproduction
 
@@ -131,4 +164,16 @@ Le numéro de police sert à définir le périmètre documentaire de ce prototyp
 
 ## 11. Conclusion
 
-La V2 dispose d'un socle de tests automatisés significatif et de seuils de rappel vérifiés sur son corpus synthétique. Les **206 tests réussis** témoignent de l'état de validation rapporté le 2 novembre 2026, **pas** d'une validation de production. La priorité est désormais la mesure indépendante de la pertinence, des erreurs d'avis et de la robustesse sur des données non vues.
+ClaimLens AI V2 dispose d'un socle de tests automatisés couvrant notamment l'intégrité des données, la recherche documentaire hybride, le périmètre contractuel, les preuves PDF et le moteur d'avis indicatif.
+
+Une première validation a été réalisée le **2 novembre 2026**, puis confirmée le **3 novembre 2026** dans une installation indépendante reconstruite à partir du dépôt Git.
+
+La dernière exécution complète a donné les résultats suivants : **206 tests réussis, 1 ignoré, 0 échec et 12 avertissements**.
+
+L'installation des dépendances, l'indexation des six PDF, l'initialisation SQLite, la compilation React et un scénario d'analyse avec visualisation des preuves ont également été vérifiés.
+
+Ces résultats démontrent le bon fonctionnement du prototype sur l'environnement Windows testé. Ils ne constituent pas une validation de production, une évaluation juridique des avis ou une garantie de généralisation à des contrats réels.
+
+Les prochaines priorités concernent l'évaluation indépendante de la pertinence documentaire, la robustesse du moteur d'avis, les performances et la sécurité.
+
+**ClaimLens AI V2 reste un démonstrateur technique local utilisant exclusivement des données synthétiques.**
