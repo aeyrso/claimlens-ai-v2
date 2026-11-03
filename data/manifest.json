@@ -1,0 +1,56 @@
+{
+  "project": "ClaimLens AI",
+  "release": "2026-10-28",
+  "corpus_kind": "entirely_synthetic_original",
+  "public_demo_reuse": "yes, project demo artifacts",
+  "disclaimer": "No real insurer or real policy. Fictional coverage and conditions.",
+  "files": [
+    {
+      "relative_path": "contracts/contrat_A_protection_essentielle.pdf",
+      "sha256": "6e132e685afa1a9a90826cf0228410dbe51861e1342b728ec2e8977547dd756b",
+      "size_bytes": 51321
+    },
+    {
+      "relative_path": "contracts/contrat_B_mobilite_habitation.pdf",
+      "sha256": "39e1db81e3f1f8161e55f7139c22a54d77a35c8dc96da598942e4e6bd742412e",
+      "size_bytes": 51330
+    },
+    {
+      "relative_path": "contracts/contrat_C_serenite_etendue.pdf",
+      "sha256": "e02973a8ba075fba4bef1fb8e22ba360fc64421da445cd0732b41c2e92d7f83d",
+      "size_bytes": 51510
+    },
+    {
+      "relative_path": "policy_schedules/conditions_particulieres_A.pdf",
+      "sha256": "45cbc61dc82029de0797028bb13f8dfc00220d93a371a0da698383eeda8117d5",
+      "size_bytes": 45848
+    },
+    {
+      "relative_path": "policy_schedules/conditions_particulieres_B.pdf",
+      "sha256": "ba6917e0185959e91b75c95b74a5ce11a6ac7ca565987b425fcea8c8aa7ed5f0",
+      "size_bytes": 46000
+    },
+    {
+      "relative_path": "policy_schedules/conditions_particulieres_C.pdf",
+      "sha256": "4b4bdfc55f220a4311536f3372ff48f2441698153b7ae039c398c5bb77aff18b",
+      "size_bytes": 45933
+    }
+  ],
+  "pairs": [
+    {
+      "id": "A",
+      "general_conditions": "contracts/contrat_A_protection_essentielle.pdf",
+      "policy_schedule": "policy_schedules/conditions_particulieres_A.pdf"
+    },
+    {
+      "id": "B",
+      "general_conditions": "contracts/contrat_B_mobilite_habitation.pdf",
+      "policy_schedule": "policy_schedules/conditions_particulieres_B.pdf"
+    },
+    {
+      "id": "C",
+      "general_conditions": "contracts/contrat_C_serenite_etendue.pdf",
+      "policy_schedule": "policy_schedules/conditions_particulieres_C.pdf"
+    }
+  ]
+}

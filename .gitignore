@@ -1,0 +1,53 @@
+
+# Environnement virtuel Python
+.venv/
+venv/
+
+# Fichiers temporaires Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Variables et secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Fichiers locaux et temporaires
+*.log
+.DS_Store
+Thumbs.db
+
+# Fichiers générés par le pipeline
+data/parsed/
+data/processed/
+data/embeddings/
+
+# Fichiers de configuration locaux
+.vscode/settings.local.json
+
+# Bases de données SQLite locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Fichiers temporaires associés à SQLite
+*.db-*
+*.sqlite-*
+*.sqlite3-*
+
+
+# Secrets Streamlit locaux
+.streamlit/secrets.toml
+
+# Certificats et cles privees supplementaires
+*.p12
+*.pfx
+
+# React/Vite frontend build artifacts
+frontend-web/node_modules/
+frontend-web/dist/

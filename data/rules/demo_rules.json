@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "scope": "Demonstration only; rules manually extracted from synthetic PDFs and checked against referenced pages.",
+  "products": [
+    {"general_reference": "HAB-A-CG-2026", "schedule_reference": "HAB-A-CP-2026", "bike_coverage": "Vol de vélo en local commun", "garden_coverage": "Mobilier extérieur / Jardin", "bike": {"required": ["door_locked", "bike_fixed"], "blocked_if": ["door_unlocked"]}, "candle": {"excluded": "garden_not_subscribed"}},
+    {"general_reference": "HAB-B-CG-2026", "schedule_reference": "HAB-B-CP-2026", "bike_coverage": "MOBILITÉ+", "garden_coverage": "JARDIN+", "bike": {"required": ["bike_fixed", "lock_m2", "purchase_proof"]}, "candle": {"excluded": "slow_melted_wax"}},
+    {"general_reference": "HAB-C-CG-2026", "schedule_reference": "HAB-C-CP-2026", "bike_coverage": "VÉLO-SÉCURITÉ", "garden_coverage": "TERRASSE-ACCIDENT", "bike": {"required": ["bike_fixed", "working_lock"]}, "candle": {"required": ["irreversible_damage", "under_48_hours"], "blocked_if": ["over_48_hours"]}}
+  ],
+  "citations": [
+    {"reference":"HAB-A-CG-2026", "scenario":"bike", "section":"3.2", "page":2, "anchor":"Si la porte du local commun n’était pas verrouillée"},
+    {"reference":"HAB-A-CG-2026", "scenario":"candle", "section":"4.2", "page":2, "anchor":"Un dommage causé à une table de jardin par de la cire d’une bougie"},
+    {"reference":"HAB-B-CG-2026", "scenario":"bike", "section":"3.2–3.3", "page":2, "anchor":"Contrairement à la formule A, le seul fait que la porte du local commun"},
+    {"reference":"HAB-B-CG-2026", "scenario":"candle", "section":"4.2", "page":2, "anchor":"Sont expressément exclus les dommages dus à la fonte de cire"},
+    {"reference":"HAB-C-CG-2026", "scenario":"bike", "section":"3.1–3.2", "page":2, "anchor":"Si l’option VÉLO-SÉCURITÉ n’apparaît pas dans les conditions particulières"},
+    {"reference":"HAB-C-CG-2026", "scenario":"candle", "section":"4.2–4.3", "page":2, "anchor":"La garantie de la section 4.1 suppose"}
+  ]
+}

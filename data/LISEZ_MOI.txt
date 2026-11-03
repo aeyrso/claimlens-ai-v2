@@ -1,0 +1,114 @@
+# CLAIMLENS AI — CORPUS SYNTHÉTIQUE DE DÉMONSTRATION
+
+Édition du corpus : 28 octobre 2026  
+Application : ClaimLens AI V2  
+Statut : données fictives destinées à la démonstration technique
+
+## 1. PRÉSENTATION
+
+Ce répertoire contient un corpus de six documents PDF d'assurance entièrement fictifs, préparé pour le projet ClaimLens AI.
+
+Ces documents permettent de démontrer une application d'analyse contractuelle comprenant une recherche documentaire hybride, des avis indicatifs et des références vérifiables aux PDF.
+
+Les contrats, garanties, montants, exclusions et situations décrits sont inventés.
+
+## 2. CONTENU DU CORPUS
+
+- `contracts/` : trois PDF de conditions générales fictives, correspondant aux contrats A, B et C.
+- `policy_schedules/` : trois PDF de conditions particulières fictives, correspondant aux contrats A, B et C.
+- `manifest.json` : manifeste associant les fichiers aux contrats et contenant notamment leurs empreintes SHA-256.
+
+Au total : trois polices fictives, six PDF.
+
+Identifiants :
+
+- Contrat A : `SIM-A-0001`
+- Contrat B : `SIM-B-0002`
+- Contrat C : `SIM-C-0003`
+
+Chaque police doit être analysée à partir de ses propres conditions générales et particulières.
+
+## 3. ORIGINE ET DROITS D'UTILISATION
+
+Selon la documentation du projet, les six PDF ont été créés spécifiquement pour ClaimLens AI.
+
+Ils ne sont pas présentés comme des contrats officiels de Macif, Société Générale, Matmut, Groupe Foyer ou d'un autre assureur.
+
+Le corpus ne doit pas être confondu avec des documents contractuels authentiques.
+
+Avant toute diffusion publique, vérifier que les contenus et éléments graphiques sont bien utilisables et que la licence choisie pour le dépôt couvre les fichiers concernés.
+
+Aucune licence libre, notamment CC0, n'est automatiquement accordée par le présent fichier.
+
+## 4. UTILISATION DANS CLAIMLENS AI V2
+
+1. Vérifier les six PDF à l'aide de `manifest.json` et de leurs empreintes SHA-256.
+2. Extraire leur contenu avec le pipeline Docling du projet.
+3. Générer les exports JSON structurés dans `data/parsed/`.
+4. Importer dans SQLite les polices, documents et garanties.
+5. Restreindre chaque recherche aux documents associés à la police sélectionnée.
+6. Retrouver les passages pertinents à l'aide des recherches lexicale et sémantique.
+7. Conserver les références des documents, les numéros de page et les coordonnées des preuves.
+8. Vérifier les garanties et exclusions à l'aide du moteur d'avis V2.
+9. Permettre la consultation des pages PDF surlignées.
+
+Les fichiers JSON du dossier `data/parsed/` sont générés à partir du corpus. Ils ne remplacent pas les six PDF sources.
+
+## 5. SCÉNARIOS DE DÉMONSTRATION
+
+Le moteur d'avis V2 traite de manière ciblée deux familles de scénarios :
+
+- Vol d'un vélo dans un local commun, avec vérification des conditions contractuelles et des circonstances déclarées.
+- Dommage à une table de jardin impliquant une bougie, avec examen des exclusions, des négations et du lien de causalité.
+
+Les scénarios peuvent produire des avis différents selon la police, les options souscrites et les faits disponibles.
+
+La présence d'une garantie dans les conditions particulières ne prouve pas, à elle seule, que le dommage est couvert.
+
+Une exclusion ne doit pas être appliquée sans vérifier qu'elle concerne effectivement le dommage déclaré.
+
+## 6. RÈGLES ET LIMITES TECHNIQUES
+
+Les règles du moteur V2 figurent dans `data/rules/demo_rules.json` et sont exploitées par le backend.
+
+Ce catalogue de règles a été préparé manuellement pour le corpus synthétique. Il n'est pas extrait automatiquement de nouveaux contrats.
+
+Les conclusions possibles du moteur sont :
+
+- `covered` : couverture potentiellement applicable selon les conditions vérifiées.
+- `not_covered` : non-couverture indiquée par une règle contractuelle applicable.
+- `undetermined` : éléments insuffisants pour formuler un avis déterminé.
+
+Il s'agit d'avis indicatifs et non de décisions juridiques définitives.
+
+La recherche documentaire hybride peut retrouver des passages utiles sans garantir que tous les résultats sont pertinents.
+
+L'interprétation de nouvelles formulations ou de nouveaux contrats nécessite des validations supplémentaires.
+
+## 7. AVERTISSEMENT
+
+Ces documents sont exclusivement fictifs.
+
+Ils n'ont aucune valeur juridique ou contractuelle.
+
+Aucune donnée personnelle réelle n'est destinée à figurer dans ce corpus.
+
+Ne pas utiliser ClaimLens AI pour accepter, refuser ou indemniser un sinistre réel.
+
+Ne pas considérer les résultats comme un conseil d'assurance applicable à une situation réelle.
+
+Toute utilisation sur des documents authentiques nécessiterait des contrôles supplémentaires, notamment en matière de confidentialité, de droits d'utilisation, d'accès aux données et de validation humaine.
+
+## 8. PUBLICATION ET MAINTENANCE
+
+Les six PDF sources et leur manifeste doivent être conservés pour garantir la reproductibilité du démonstrateur.
+
+Les exports JSON générés, bases SQLite locales, caches et environnements virtuels ne doivent pas être publiés comme fichiers sources du projet.
+
+Les empreintes SHA-256 du manifeste doivent rester cohérentes avec les PDF correspondants. Si un PDF source est modifié, son manifeste doit être actualisé selon le processus prévu par le projet.
+
+La documentation principale de l'application et les instructions d'installation figurent dans le `README.md` situé à la racine du dépôt.
+
+---
+
+**ClaimLens AI V2 — Corpus contractuel synthétique destiné à une démonstration technique, et non à un usage assurantiel réel.**

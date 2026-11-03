@@ -1,0 +1,21 @@
+# ClaimLens AI - Python dependencies
+# Phase 1: Document ingestion and testing
+
+docling
+pymupdf
+pandas
+pytest
+
+# Phase 1b: Multilingual E5 embeddings
+numpy==2.5.4
+torch==2.15.0
+transformers==5.21.1
+
+
+# Phase 2: API HTTP
+fastapi
+uvicorn
+
+# Phase 3: Web interface
+streamlit
+httpx

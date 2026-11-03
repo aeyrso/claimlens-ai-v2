@@ -1,0 +1,103 @@
+
+{
+  "description": "ClaimLens AI - Complementary retrieval validation",
+  "purpose": "Compare RRF lexical weights 2.0 and 4.0 on previously untargeted contractual risk rows.",
+  "cases": [
+    {
+      "id": "VAL_A_EAU_CUISINE",
+      "policy_number": "SIM-A-0001",
+      "query": "Une canalisation a fui soudainement et l'eau a abime les meubles de ma cuisine.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r2"
+      ]
+    },
+    {
+      "id": "VAL_A_EAU_PLAFOND",
+      "policy_number": "SIM-A-0001",
+      "query": "J'ai constate une fuite d'eau qui a endommage le plafond de mon appartement.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r2"
+      ]
+    },
+    {
+      "id": "VAL_A_VOL_DOMICILE",
+      "policy_number": "SIM-A-0001",
+      "query": "Quelqu'un est entre par effraction chez moi et a emporte plusieurs objets.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r4"
+      ]
+    },
+    {
+      "id": "VAL_A_VITRE_CASSEE",
+      "policy_number": "SIM-A-0001",
+      "query": "La vitre de la fenetre de mon salon s'est brisee apres un choc.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r6"
+      ]
+    },
+    {
+      "id": "VAL_B_INCENDIE_CUISINE",
+      "policy_number": "SIM-B-0002",
+      "query": "Un feu a endommage ma cuisine dans mon habitation.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r1"
+      ]
+    },
+    {
+      "id": "VAL_B_INCENDIE_DEGATS",
+      "policy_number": "SIM-B-0002",
+      "query": "De la fumee et des flammes ont cause des dommages dans mon logement.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r1"
+      ]
+    },
+    {
+      "id": "VAL_B_FUITE_PLAFOND",
+      "policy_number": "SIM-B-0002",
+      "query": "Une fuite soudaine a provoque des infiltrations et abime mon plafond.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r2"
+      ]
+    },
+    {
+      "id": "VAL_B_VITRE_FISSUREE",
+      "policy_number": "SIM-B-0002",
+      "query": "Le vitrage de ma porte-fenetre s'est fissure dans mon appartement.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r7"
+      ]
+    },
+    {
+      "id": "VAL_C_BAIE_VITREE",
+      "policy_number": "SIM-C-0003",
+      "query": "Ma baie vitree a eclate apres avoir ete heurtee par un objet.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r5"
+      ]
+    },
+    {
+      "id": "VAL_C_FENETRE_BRISEE",
+      "policy_number": "SIM-C-0003",
+      "query": "Un impact accidentel a casse la glace de ma fenetre.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r5"
+      ]
+    },
+    {
+      "id": "VAL_C_VOL_OUTILS_JARDIN",
+      "policy_number": "SIM-C-0003",
+      "query": "Des outils et du materiel entreposes dans mon jardin ont disparu. Je pense qu'ils ont ete voles.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r6"
+      ]
+    },
+    {
+      "id": "VAL_C_VOL_EQUIPEMENT",
+      "policy_number": "SIM-C-0003",
+      "query": "On m'a derobe plusieurs equipements que j'utilisais pour entretenir mon jardin.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r6"
+      ]
+    }
+  ]
+}

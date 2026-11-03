@@ -1,0 +1,140 @@
+
+{
+  "version": 1,
+  "description": "ClaimLens AI - Jeu d'evaluation synthetique du retrieval multi-contrats. Les cibles sont des preuves a retrouver, pas des decisions de couverture.",
+  "cases": [
+    {
+      "id": "A_INCENDIE",
+      "policy_number": "SIM-A-0001",
+      "query": "Un incendie a endommage les meubles de mon salon.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r1"
+      ],
+      "subscription_item": "Incendie intérieur",
+      "subscription_status": "SOUSCRITE",
+      "location_context": "non_applicable"
+    },
+    {
+      "id": "A_VELO_LOCAL",
+      "policy_number": "SIM-A-0001",
+      "query": "On a vole ma bicyclette dans le local commun de l'immeuble.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r3"
+      ],
+      "subscription_item": "Vol de vélo en local commun",
+      "subscription_status": "SOUSCRITE",
+      "location_context": "decrit_mais_non_verifie"
+    },
+    {
+      "id": "A_MOBILIER_EXTERIEUR",
+      "policy_number": "SIM-A-0001",
+      "query": "Ma table de terrasse a subi une casse accidentelle.",
+      "target_evidence_ids": [
+        "contracts/contrat_A_protection_essentielle:t2:r5"
+      ],
+      "subscription_item": "Mobilier extérieur / Jardin",
+      "subscription_status": "NON SOUSCRITE",
+      "location_context": "non_applicable"
+    },
+    {
+      "id": "B_GARAGE_COLLECTIF",
+      "policy_number": "SIM-B-0002",
+      "query": "On m'a pris ma bicyclette dans le garage collectif de mon immeuble.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r3"
+      ],
+      "subscription_item": "MOBILITÉ+",
+      "subscription_status": "SOUSCRIT",
+      "location_context": "a_qualifier"
+    },
+    {
+      "id": "B_TROTTOIR",
+      "policy_number": "SIM-B-0002",
+      "query": "On m'a vole mon velo attache dehors sur le trottoir.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r4"
+      ],
+      "subscription_item": "MOBILITÉ+",
+      "subscription_status": "SOUSCRIT",
+      "location_context": "a_qualifier"
+    },
+    {
+      "id": "B_VELO_LIEU_INCONNU",
+      "policy_number": "SIM-B-0002",
+      "query": "Mon velo a disparu, je ne sais pas ou.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r3",
+        "contracts/contrat_B_mobilite_habitation:t1:r4"
+      ],
+      "subscription_item": "MOBILITÉ+",
+      "subscription_status": "SOUSCRIT",
+      "location_context": "inconnu"
+    },
+    {
+      "id": "B_CASSE_INTERIEURE",
+      "policy_number": "SIM-B-0002",
+      "query": "J'ai casse accidentellement un objet dans mon salon.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r5"
+      ],
+      "subscription_item": "CASSE+",
+      "subscription_status": "NON SOUSCRIT",
+      "location_context": "non_applicable"
+    },
+    {
+      "id": "B_MOBILIER_JARDIN",
+      "policy_number": "SIM-B-0002",
+      "query": "Ma table de jardin a ete endommagee.",
+      "target_evidence_ids": [
+        "contracts/contrat_B_mobilite_habitation:t1:r6"
+      ],
+      "subscription_item": "JARDIN+",
+      "subscription_status": "SOUSCRIT",
+      "location_context": "non_applicable"
+    },
+    {
+      "id": "C_VELO_NON_SOUSCRIT",
+      "policy_number": "SIM-C-0003",
+      "query": "Mon velo a ete vole dans le local commun de mon immeuble.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r1"
+      ],
+      "subscription_item": "VÉLO-SÉCURITÉ",
+      "subscription_status": "NON SOUSCRIT",
+      "location_context": "decrit_mais_non_verifie"
+    },
+    {
+      "id": "C_DEGAT_EAUX",
+      "policy_number": "SIM-C-0003",
+      "query": "Une fuite soudaine a provoque un degat des eaux dans mon appartement.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r2"
+      ],
+      "subscription_item": "Dégât des eaux",
+      "subscription_status": "SOUSCRITE",
+      "location_context": "non_applicable"
+    },
+    {
+      "id": "C_TABLE_JARDIN",
+      "policy_number": "SIM-C-0003",
+      "query": "Ma table de jardin s'est cassee accidentellement.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r3"
+      ],
+      "subscription_item": "TERRASSE-ACCIDENT",
+      "subscription_status": "SOUSCRIT",
+      "location_context": "non_applicable"
+    },
+    {
+      "id": "C_INCENDIE",
+      "policy_number": "SIM-C-0003",
+      "query": "Un feu a cause des dommages dans mon logement.",
+      "target_evidence_ids": [
+        "contracts/contrat_C_serenite_etendue:t1:r4"
+      ],
+      "subscription_item": "Incendie intérieur",
+      "subscription_status": "SOUSCRITE",
+      "location_context": "non_applicable"
+    }
+  ]
+}
