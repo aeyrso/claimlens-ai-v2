@@ -790,16 +790,36 @@ L'utilisation d'un LLM ne suffirait pas, à elle seule, à garantir la fidélit�
 - Suite complète : **206 tests réussis, 1 ignoré, 12 avertissements** (2 novembre 2026).
 - Mesure ponctuelle locale de temps de réponse et de mémoire du processus.
 
-### 15.2 Vérifications restant à effectuer avant une diffusion plus large
+### 15.2 Installation propre et reproductibilité — validation du 3 novembre 2026
 
-- **Installation V2 propre à partir du dépôt ou d'un ZIP final** : installation des dépendances, extraction, import SQLite, build React et tests sur un dossier vierge.
-- **Audit du contenu réellement publié** : fichiers suivis par Git, historiques, secrets, données générées, pertinence et actualité des documents `docs/` et `V2_DEV_NOTES.md`.
-- Revue finale des dépendances Python/Node et de leurs versions, tests de sécurité et analyse de charge si exposition réseau.
-- Vérification complémentaire des décisions sur des formulations nouvelles et de la pertinence des preuves sur les scénarios adversariaux.
-- Tests de lisibilité sur petits écrans et navigateurs supplémentaires, si ce périmètre est revendiqué.
-- **Déploiement HTTPS**, contrôle d'accès et limitation des requêtes **si** une URL publique ou semi-publique est proposée.
+Une vérification de reproductibilité a été réalisée le 3 novembre 2026 à partir du commit Git `5cfbb85`, dans une copie indépendante créée avec `git clone`.
 
-**Aucune URL hébergée n'est fournie par cette documentation.** À défaut de déploiement sûr, le projet doit être partagé sous forme de dépôt/ZIP reproductible, éventuellement avec captures et instructions de démonstration locale. Ne pas laisser croire à une disponibilité en ligne non vérifiée.
+**Environnement :** Windows, Python 3.12.10, environnement virtuel dédié, dépendances Python et npm réinstallées.
+
+**Résultats obtenus :**
+
+- Installation des dépendances Python et vérification avec `pip check` : aucune incompatibilité détectée.
+- Extraction et indexation des six PDF synthétiques : six exports générés, aucun export préexistant.
+- Initialisation SQLite : trois polices, six documents et douze garanties.
+- Exécution complète des tests Python : **206 réussis, 1 ignoré, 0 échec et 12 avertissements**, en 117,38 secondes.
+- Installation React avec `npm ci` : 70 packages installés, aucune vulnérabilité signalée par l'audit npm.
+- Compilation TypeScript et Vite : réussie, avec 1 579 modules transformés.
+- Démarrage de FastAPI et chargement de l'interface React compilée : réussis.
+- Vérification manuelle du scénario de vol de vélo en local commun avec la police `SIM-B-0002` : avis indicatif « Informations insuffisantes », dix preuves retrouvées et visualisation d'un passage surligné dans le PDF original.
+- Arrêt normal du serveur après les vérifications.
+
+Ces résultats démontrent la reproductibilité de l'installation sur l'environnement Windows testé. Ils ne constituent pas une certification de sécurité, un test de charge ou une validation sur un corpus réel indépendant.
+
+**Vérifications et évolutions restant à réaliser :**
+
+- Évaluation indépendante sur de nouveaux contrats et scénarios.
+- Analyse approfondie des dépendances et de leur sécurité.
+- Tests de charge, de concurrence et de performances sur d'autres environnements.
+- Vérification de l'accessibilité et de l'affichage sur différents appareils et navigateurs.
+- Mise en place d'une authentification, d'autorisations fondées sur l'identité, d'un hébergement sécurisé et d'une supervision avant toute exposition publique de l'application.
+- Validation métier et juridique avant toute utilisation sur de véritables contrats d'assurance.
+
+La publication du **code source sur GitHub** ne signifie pas que l'application est déployée publiquement. Le prototype reste destiné à une exécution locale sur des données synthétiques.
 
 ### 15.3 Statut de la V1 historique
 
@@ -811,7 +831,6 @@ La **V1** est un prototype Streamlit de recherche documentaire hybride. Elle res
 
 - `docs/architecture.md` — architecture et compromis initiaux de la V2 ; vérifier sa synchronisation avec les évolutions récentes.
 - `docs/evaluation.md` — protocole et risques ; les validations indiquées dans la version initiale sont parfois antérieures aux derniers tests.
-- `V2_DEV_NOTES.md` — historique de préparation, **pas** le statut actuel de livraison.
 - `frontend-web/README.md` — notes de démarrage spécifiques à l'interface React.
 - `data/LISEZ_MOI.txt` — origine, usages et limites du corpus synthétique.
 - `data/manifest.json` — inventaire et intégrité des six PDF.
