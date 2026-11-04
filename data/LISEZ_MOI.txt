@@ -30,13 +30,13 @@ Chaque police doit être analysée à partir de ses propres conditions général
 
 ## 3. ORIGINE ET DROITS D'UTILISATION
 
-Selon la documentation du projet, les six PDF ont été créés spécifiquement pour ClaimLens AI.
+Les six PDF sont déclarés dans le manifeste comme des documents originaux et entièrement synthétiques, créés spécifiquement pour le projet ClaimLens AI.
 
 Ils ne sont pas présentés comme des contrats officiels de Macif, Société Générale, Matmut, Groupe Foyer ou d'un autre assureur.
 
 Le corpus ne doit pas être confondu avec des documents contractuels authentiques.
 
-Avant toute diffusion publique, vérifier que les contenus et éléments graphiques sont bien utilisables et que la licence choisie pour le dépôt couvre les fichiers concernés.
+Le corpus est publié dans le dépôt GitHub à des fins de démonstration technique. Avant toute réutilisation ou redistribution indépendante, les droits d'utilisation des contenus et éléments graphiques doivent être vérifiés et les conditions de licence doivent être précisées.
 
 Aucune licence libre, notamment CC0, n'est automatiquement accordée par le présent fichier.
 
@@ -101,7 +101,7 @@ Toute utilisation sur des documents authentiques nécessiterait des contrôles s
 
 ## 8. PUBLICATION ET MAINTENANCE
 
-Les six PDF sources et leur manifeste doivent être conservés pour garantir la reproductibilité du démonstrateur.
+Les six PDF sources et leur manifeste doivent être conservés dans le dépôt afin de permettre la vérification des empreintes SHA-256, la reconstruction des exports documentaires et l'initialisation du corpus synthétique.
 
 Les exports JSON générés, bases SQLite locales, caches et environnements virtuels ne doivent pas être publiés comme fichiers sources du projet.
 
