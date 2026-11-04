@@ -2,7 +2,7 @@
 
 ## 1. Objet
 
-Cette note présente les protocoles d'évaluation, les métriques documentées et les validations communiquées pour **ClaimLens AI V2**. Elle distingue les mesures historiques V1, les critères effectivement testés en V2 et les limites d'interprétation.
+Cette note présente les protocoles d'évaluation, les métriques documentées et les validations réalisées pour **ClaimLens AI V2**. Elle décrit les critères effectivement testés, les résultats obtenus lors des validations locales et les limites d'interprétation de ces résultats.
 
 ClaimLens AI est un démonstrateur local sur **contrats d'assurance synthétiques**. La recherche documentaire, l'assemblage de preuves et l'avis indicatif par règles doivent être évalués séparément. Aucun taux de réussite de tests ne constitue une garantie de qualité juridique ou une preuve d'aptitude à la production.
 
@@ -32,17 +32,7 @@ La moyenne est effectuée par scénario : chaque scénario pèse autant, indépe
 
 Le **Recall@K mesure le rappel des preuves attendues**. Il ne mesure pas directement la précision des résultats, la part des passages hors sujet, la fidélité d'une éventuelle interprétation, la qualité juridique de l'avis ou la pertinence sur des contrats inédits.
 
-## 4. Mesures historiques V1 — ne pas attribuer à la V2
-
-| Indicateur | Valeur historique V1 |
-|---|---:|
-| Recall@3 | 83,33 % |
-| Recall@5 | 97,92 % |
-| Recall@10 | 100 % |
-
-Ces chiffres sont issus de l'évaluation V1 signalée pour **octobre 2026**. Ils restent des repères historiques ; les sorties de vérification V2 consultées ne fournissent pas de nouveaux pourcentages exacts équivalents. **Ne pas les présenter comme de nouvelles mesures V2.**
-
-## 5. Critères de validation V2 communiqués le 2 novembre 2026
+## 4. Critères de validation V2 communiqués le 2 novembre 2026
 
 `tests/test_retrieval_evaluation.py` impose notamment :
 
@@ -55,7 +45,7 @@ Dernier résultat communiqué pour ce module : **6 tests réussis** (`6 passed i
 
 Une limite qualitative connue demeure : certaines nouvelles formulations peuvent produire des preuves faibles ou hors sujet. Le filtrage a corrigé un cas ciblé lié à la table de jardin, mais d'autres formulations causales peuvent encore faire remonter des passages relatifs au vélo.
 
-## 6. Validation de l'avis indicatif par règles
+## 5. Validation de l'avis indicatif par règles
 
 La V2 ajoute un moteur d'avis dans `backend/analysis/decision.py`, reposant sur `data/rules/demo_rules.json` et des contrôles explicites plutôt que sur une génération libre de texte par LLM.
 
@@ -63,9 +53,9 @@ La suite `tests/test_decision.py` a obtenu **17 tests réussis**, y compris des 
 
 Pour aller plus loin, il faudrait annoter indépendamment des scénarios positifs, négatifs, ambigus et contradictoires, puis mesurer les erreurs d'avis par type de garantie et circonstance.
 
-## 7. Résultats de validation de la V2
+## 6. Résultats de validation de la V2
 
-### 7.1 Première validation — 2 novembre 2026
+### 6.1 Première validation — 2 novembre 2026
 
 Une première exécution complète des tests avait donné les résultats suivants :
 
@@ -82,7 +72,7 @@ Sortie rapportée :
 206 passed, 1 skipped, 12 warnings in 116.69s
 ```
 
-### 7.2 Installation indépendante — 3 novembre 2026
+### 6.2 Installation indépendante — 3 novembre 2026
 
 Une nouvelle validation a été effectuée à partir du commit Git `5cfbb85`, dans une copie propre créée avec `git clone`.
 
@@ -109,7 +99,7 @@ Les 206 tests ont réussi, aucun n'a échoué et un test a été ignoré.
 
 Le test ignoré concerne un scénario de lien symbolique soumis aux permissions Windows. Les avertissements sont principalement liés à des fonctionnalités dépréciées dans certaines dépendances, notamment Starlette/httpx, Docling, Pydantic et les composants OCR.
 
-### 7.3 Interprétation
+### 6.3 Interprétation
 
 Cette seconde validation confirme que ClaimLens AI V2 peut être reconstruit, testé et exécuté sur l'environnement Windows utilisé, à partir des sources enregistrées dans Git.
 
@@ -117,7 +107,7 @@ Elle ne démontre pas une reproductibilité universelle sur tous les systèmes d
 
 Les tests automatisés vérifient des comportements définis, mais ne constituent pas une validation indépendante de la qualité juridique des avis, de la pertinence documentaire sur des contrats réels ou de la sécurité d'un service exposé sur Internet.
 
-## 8. Commandes de reproduction
+## 7. Commandes de reproduction
 
 Exécuter depuis la racine du projet sous Windows, après installation des dépendances et préparation du corpus :
 
@@ -139,7 +129,7 @@ Pour refaire une installation complète, suivre la procédure du README V2, nota
 
 En cas de modification du corpus, des règles, du moteur de classement, des dépendances ou des tests, archiver les nouvelles sorties et dater les nouvelles mesures au lieu de conserver les chiffres historiques comme s'ils étaient inchangés.
 
-## 9. Couverture des validations et limites
+## 8. Couverture des validations et limites
 
 Les suites automatisées incluent notamment des contrôles d'intégrité d'import, de schémas de données, de périmètre SQL, de recherche lexicale et sémantique, de références et d'accès aux PDF ainsi que des régressions sur les avis.
 
@@ -154,7 +144,7 @@ Elles ne remplacent pas :
 
 Le numéro de police sert à définir le périmètre documentaire de ce prototype, **pas à authentifier un utilisateur**. Les tests de cloisonnement ne permettent donc pas de revendiquer une sécurité de production.
 
-## 10. Priorités de prochaine évaluation
+## 9. Priorités de prochaine évaluation
 
 1. Constituer un jeu de contrats et de questions **nouveaux**, séparé des exemples de développement.
 2. Mesurer simultanément Recall@K, Precision@K, nDCG/MRR et le taux de preuves hors sujet.
@@ -162,7 +152,7 @@ Le numéro de police sert à définir le périmètre documentaire de ce prototyp
 4. Chronométrer ingestion, démarrage du modèle, requêtes répétées et génération d'aperçus PDF.
 5. Ajouter des tests de sécurité et des validations sur des documents non fiables avant tout élargissement du périmètre.
 
-## 11. Conclusion
+## 10. Conclusion
 
 ClaimLens AI V2 dispose d'un socle de tests automatisés couvrant notamment l'intégrité des données, la recherche documentaire hybride, le périmètre contractuel, les preuves PDF et le moteur d'avis indicatif.
 

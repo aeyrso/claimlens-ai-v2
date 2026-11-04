@@ -98,7 +98,7 @@ La V2 utilise **React 19, TypeScript et Vite 6**, avec une interface de travail 
 
 Le frontend **affiche** l'avis calculé par FastAPI ; il n'effectue pas lui-même de décision d'assurance.
 
-L'ancien frontend **Streamlit** (`frontend/app.py`) reste un composant hérité de la V1 ; **React est l'interface de référence de la V2**.
+L'interface utilisateur de la V2 se trouve dans `frontend-web/`. Elle est développée avec React 19, TypeScript et Vite 6. Elle communique avec l'API FastAPI et affiche les avis indicatifs calculés côté serveur. Aucune interface Streamlit ne fait partie de cette version.
 
 ---
 
@@ -144,7 +144,7 @@ La recherche doit retrouver notamment le module `JARDIN+` souscrit et la référ
 
 Identifiant de test : `SIM-INCONNUE-9999`.
 
-L'API doit rejeter la police inconnue (réponse `404` sur les routes d'analyse) et ne jamais restituer le dossier ou les preuves d'une autre police. L'interface React limite normalement la sélection aux trois polices de démonstration ; ce test peut être réalisé via l'API ou les tests automatisés. Le rejet d'une police inconnue avait également été vérifié visuellement sur la V1.
+L'API doit rejeter la police inconnue (réponse `404` sur les routes d'analyse) et ne jamais restituer le dossier ou les preuves d'une autre police. L'interface React limite normalement la sélection aux trois polices de démonstration ; ce test peut être réalisé via l'API ou les tests automatisés.
 
 ### Vérifier une preuve sur le document d'origine
 
@@ -169,7 +169,6 @@ Le nombre de preuves affichées n'est **pas** un indicateur de couverture. Une p
 |---|---|---|
 | Langage backend | Python 3.12 | API, ingestion, recherche, règles et tests |
 | Interface V2 | React 19, TypeScript, Vite 6 | Formulaire, avis, références, consultation des pages |
-| Interface historique V1 | Streamlit | Prototype antérieur conservé à titre de référence |
 | API HTTP | FastAPI | Routes typées, appels d'analyse et prévisualisation |
 | Validation | Pydantic | Schémas stricts, contrôles des entrées et sorties |
 | Base relationnelle | SQLite | Polices, garanties, documents et statuts de souscription |
@@ -180,7 +179,7 @@ Le nombre de preuves affichées n'est **pas** un indicateur de couverture. Une p
 | Fusion | Weighted RRF | Combinaison des classements lexicaux et sémantiques |
 | Avis indicatif | Règles déclaratives manuelles + vérifications des sources | Décision de démonstration limitée, explicable |
 | Évaluation | pytest + jeux synthétiques | Intégrité, isolation, classement, API et règles |
-| Versionnement | Git | Historique du code ; publication non encore effectuée pour la V2 |
+| Versionnement | Git / GitHub | Historique du code et publication du dépôt source V2 |
 
 ### 4.1 Pipeline de préparation des documents (hors ligne)
 
@@ -289,20 +288,21 @@ L'aperçu est généré en mémoire. Aucune modification du PDF source n'est enr
 ## 5. Structure du projet
 
 ```text
+
 claimlens-ai-v2/
 ├── backend/
 │   ├── analysis/
-│   │   ├── citations.py        # Coordonnées et références PDF
-│   │   ├── coverage.py         # Construction du dossier de preuves
-│   │   ├── decision.py         # Avis indicatif V2
-│   │   ├── pdf_access.py       # Résolution sûre des chemins
-│   │   └── pdf_preview.py      # Aperçu surligné
+│   │   ├── citations.py
+│   │   ├── coverage.py
+│   │   ├── decision.py
+│   │   ├── pdf_access.py
+│   │   └── pdf_preview.py
 │   ├── database/
-│   │   ├── bootstrap.py        # Initialisation non destructive
-│   │   ├── connection.py       # Connexions SQLite
-│   │   ├── importer.py         # Import du corpus
-│   │   ├── queries.py          # Recherche SQL
-│   │   └── schema.sql          # Schéma relationnel
+│   │   ├── bootstrap.py
+│   │   ├── connection.py
+│   │   ├── importer.py
+│   │   ├── queries.py
+│   │   └── schema.sql
 │   ├── ingestion/
 │   │   ├── docling_factory.py
 │   │   ├── indexer.py
@@ -317,9 +317,9 @@ claimlens-ai-v2/
 │   │   ├── search.py
 │   │   └── semantic.py
 │   ├── config.py
-│   ├── main.py              # FastAPI + interface React compilée
+│   ├── main.py
 │   └── schemas.py
-├── frontend-web/           # Interface V2 React / TypeScript / Vite
+├── frontend-web/
 │   ├── src/
 │   │   ├── App.tsx
 │   │   ├── main.tsx
@@ -327,34 +327,43 @@ claimlens-ai-v2/
 │   │   └── types.ts
 │   ├── index.html
 │   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
 │   ├── tsconfig.json
 │   └── vite.config.ts
-├── frontend/
-│   └── app.py              # Ancienne interface Streamlit (V1)
 ├── data/
-│   ├── contracts/          # 3 PDF de conditions générales
-│   ├── policy_schedules/   # 3 PDF de conditions particulières
-│   ├── evaluation/         # Scénarios de recherche
+│   ├── contracts/
+│   ├── policy_schedules/
+│   ├── evaluation/
+│   │   ├── retrieval_cases.json
+│   │   └── validation_cases.json
 │   ├── rules/
-│   │   └── demo_rules.json # Règles manuelles de démonstration
-│   ├── manifest.json       # Association et empreintes SHA-256
+│   │   └── demo_rules.json
 │   ├── LISEZ_MOI.txt
-│   └── parsed/             # Exports générés, ignorés par Git
+│   └── manifest.json
 ├── docs/
+│   ├── screenshots/
+│   │   ├── analyse-sinistre.png
+│   │   ├── pdf-surligne.png
+│   │   └── preuves-documentaires.png
 │   ├── architecture.md
 │   └── evaluation.md
 ├── scripts/
 │   └── ingest.py
-├── tests/                  # Tests automatisés conservés
-├── requirements.txt
+├── tests/
+│   ├── test_api.py
+│   ├── test_decision.py
+│   ├── test_retrieval_evaluation.py
+│   └── ... autres tests automatisés
+├── .gitignore
 ├── README.md
-├── V2_DEV_NOTES.md         # Notes de développement historiques
-└── .gitignore
+└── requirements.txt
 ```
 
-Cette arborescence présente les fichiers du **paquet candidat V2 initial** et les modules V2 étudiés. Des fichiers générés localement peuvent s'y ajouter (`.venv/`, `frontend-web/node_modules/`, `frontend-web/dist/`, `data/claimlens.sqlite3`, `data/parsed/`, caches). Les chemins exacts doivent être revérifiés dans la copie finale destinée au dépôt.
+Cette arborescence correspond aux fichiers sources présents dans le dépôt ClaimLens AI V2. Les dossiers et fichiers générés localement (`.venv/`, `data/parsed/`, `data/claimlens.sqlite3`, `frontend-web/node_modules/`, `frontend-web/dist/` et caches) sont exclus du versionnement Git.
 
-Les fichiers `docs/` et `V2_DEV_NOTES.md` ont été rédigés avant certaines validations récentes : leurs indications historiques de tests doivent être **synchronisées avant publication** si elles restent présentes dans le dépôt.
+L'interface de référence est exclusivement développée avec React, TypeScript et Vite dans `frontend-web/`. Le backend Python/FastAPI, les tests et les fichiers de configuration sont conservés dans leurs répertoires respectifs.
+
 
 ---
 
@@ -475,17 +484,7 @@ Puis ouvrir **http://127.0.0.1:5173/**. Le serveur Vite relaie `/analysis` et `/
 
 **Les deux terminaux doivent rester ouverts** pendant l'utilisation de ce mode. Après le build de production, un seul serveur FastAPI suffit pour la démonstration locale compilée.
 
-### 7.8 Ancienne interface Streamlit (V1 uniquement)
-
-Le prototype V1 utilisait deux services, FastAPI et Streamlit. La commande historique était :
-
-```powershell
-.\.venv\Scripts\python.exe -m streamlit run frontend/app.py --server.address 127.0.0.1 --server.port 8501
-```
-
-Adresse historique : **http://127.0.0.1:8501/**. Cette interface est **héritée** et ne représente pas la démonstration V2 attendue. La conserver dans le dépôt est facultatif selon la stratégie de nettoyage, mais ne pas la présenter comme point d'entrée principal de la V2.
-
-### 7.9 Tests de bon démarrage
+### 7.8 Tests de bon démarrage
 
 1. Vérifier que l'API répond sur `/health`.
 2. Ouvrir l'interface React et choisir `SIM-B-0002`.
@@ -493,7 +492,7 @@ Adresse historique : **http://127.0.0.1:8501/**. Cette interface est **héritée
 4. Vérifier les avis, les citations des **conditions générales et particulières** et les aperçus surlignés.
 5. Tester une police inexistante via l'API : aucun document d'une autre police ne doit être retourné.
 
-Une installation Windows **neuve et isolée de la V2** reste à revalider avant de déclarer le dépôt entièrement reproductible. Une telle installation avait été vérifiée pour la **V1** antérieure, mais elle ne se substitue pas à une validation V2.
+Une installation indépendante de la V2 a été validée le 3 novembre 2026 sous Windows avec Python 3.12.10. Les dépendances Python et npm ont été réinstallées, les six PDF synthétiques ont été indexés, la base SQLite a été initialisée et la suite de tests a obtenu 206 réussites, 1 test ignoré et aucun échec. La compilation React/TypeScript a également réussi. Cette validation ne garantit pas le fonctionnement sur tous les systèmes d'exploitation ni la sécurité d'un déploiement public.
 
 ---
 
@@ -562,19 +561,7 @@ Les deux fichiers `data/evaluation/retrieval_cases.json` et `data/evaluation/val
 
 Pour chaque cas, une liste de preuves documentaires attendues est comparée aux positions retrouvées par `search_policy_hybrid`. Le **rappel à K (Recall@K)** mesure la proportion des preuves attendues retrouvées parmi les K premiers résultats ; les scénarios participent à une moyenne macro.
 
-### 9.2 Métriques historiques de la V1
-
-Les mesures publiées dans l'ancien README pour l'évaluation d'**octobre 2026** étaient :
-
-| Indicateur | Résultat historique V1 |
-|---|---:|
-| Recall@3 | 83,33 % |
-| Recall@5 | 97,92 % |
-| Recall@10 | 100 % |
-
-**Ces chiffres exacts sont historiques** : ils ne doivent pas être présentés comme de nouvelles mesures V2 après les corrections du classement, car ces pourcentages exacts n'ont pas été recalculés dans les sorties fournies.
-
-### 9.3 Vérification V2 du 2 novembre 2026
+### 9.2 Vérification V2 du 2 novembre 2026
 
 Les tests actuels de `tests/test_retrieval_evaluation.py` imposent notamment :
 
@@ -662,12 +649,6 @@ Les tests existants couvrent notamment :
 
 **Un test réussi n'est pas une certification de sécurité, un avis juridique, une preuve de généralisation ou une garantie d'absence de défauts.**
 
-### 10.4 Historique V1 — conservé à titre de référence
-
-La **V1**, avec frontend Streamlit, avait été validée séparément le 2 novembre 2026 : **188 tests réussis, 1 ignoré, 0 échec, 12 avertissements**. Une installation propre de la V1 dans un dossier Windows indépendant avait aussi été exécutée avec indexation des six PDF, import SQLite et tests réussis. Ces chiffres et cette installation concernent **la V1, pas la V2**.
-
----
-
 ## 11. Performances et consommation de ressources
 
 Les mesures ponctuelles suivantes ont été relevées en **démonstration locale Windows**, après chargement du modèle :
@@ -746,7 +727,6 @@ data/embeddings/
 *.db-*
 *.sqlite-*
 *.sqlite3-*
-.streamlit/secrets.toml
 frontend-web/node_modules/
 frontend-web/dist/
 ```
@@ -840,11 +820,6 @@ Ces résultats démontrent la reproductibilité de l'installation sur l'environn
 
 La publication du **code source sur GitHub** ne signifie pas que l'application est déployée publiquement. Le prototype reste destiné à une exécution locale sur des données synthétiques.
 
-### 15.3 Statut de la V1 historique
-
-La **V1** est un prototype Streamlit de recherche documentaire hybride. Elle reste conservée séparément et son ancien bilan de **188 tests réussis, 1 ignoré** est présenté à titre d'historique. La version remise pour la démonstration actuelle doit être **la V2 React**, et non la V1.
-
----
 
 ## 16. Références internes et positionnement
 

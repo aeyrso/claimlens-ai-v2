@@ -12,8 +12,9 @@ Le système n'utilise **pas de LLM génératif** pour conclure. La composante «
 Navigateur
    |
    v
-Interface React + TypeScript (frontend-web/src/)
-   | HTTP : /analysis, /health et consultation de preuves
+Interface React + TypeScript (frontend-web/src/) 
+   | HTTP : /analysis/dossier, /analysis/decision,
+   |        /analysis/preview et /health
    v
 FastAPI (backend/main.py)
    |-- Schémas Pydantic (backend/schemas.py)
@@ -106,6 +107,8 @@ Cette vérification a confirmé :
 - La vérification manuelle d'un scénario d'analyse avec avis indicatif, dix preuves documentaires et visualisation d'un passage surligné dans le PDF original.
 
 Ces résultats confirment la reproductibilité du prototype sur l'environnement Windows testé. Ils ne constituent ni une certification de sécurité ni une validation métier sur des contrats réels.
+
+Ces commandes supposent qu'un environnement virtuel Python a déjà été créé et que les dépendances de requirements.txt ont été installées. Pour une procédure complète depuis une installation neuve, consulter la section 7 du README principal.
 
 Commandes principales depuis la racine sous Windows :
 
